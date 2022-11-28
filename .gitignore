@@ -1,0 +1,7 @@
+# ignore folders
+
+__pycache__/
+venv/
+2019/
+
+# ignore files
