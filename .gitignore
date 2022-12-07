@@ -5,3 +5,5 @@ venv/
 2019/
 
 # ignore files
+
+processed_data.csv

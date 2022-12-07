@@ -18,9 +18,7 @@ from colorlog import ColoredFormatter
 # import internal modules
 import config
 import preprocessing
-
-usertype_boolean = {"Subscriber": 0, "Customer": 1}
-gender_boolean = {"Female": 0, "Male": 1}
+import analysis
 
 if __name__=="__main__":
     parser = argparse.ArgumentParser(description="Cyclistic Case Study")
@@ -39,11 +37,18 @@ if __name__=="__main__":
     logger.setLevel(LOG_LEVEL)
     logger.addHandler(stream)
 
-    dataQ1=pd.read_csv("2019/Divvy_Trips_2019_Q1.csv")
-    dataQ2=pd.read_csv("2019/Divvy_Trips_2019_Q2.csv")
-    dataQ3=pd.read_csv("2019/Divvy_Trips_2019_Q3.csv")
-    dataQ4=pd.read_csv("2019/Divvy_Trips_2019_Q4.csv")
+    # dataQ1=pd.read_csv("2019/Divvy_Trips_2019_Q1.csv", thousands=',')
+    # dataQ2=pd.read_csv("2019/Divvy_Trips_2019_Q2.csv", thousands=',')
+    # dataQ3=pd.read_csv("2019/Divvy_Trips_2019_Q3.csv", thousands=',')
+    # dataQ4=pd.read_csv("2019/Divvy_Trips_2019_Q4.csv", thousands=',')
+    # combined_data = preprocessing.quarter_append(dataQ1,dataQ2,dataQ3,dataQ4)
+    # data = preprocessing.data_cleaning(combined_data)
+    # preprocessing.check_if_uniqueID(data)
+    # data.to_csv('processed_data.csv', index=False)
 
-    combined_data = preprocessing.quarter_append(dataQ1,dataQ2,dataQ3,dataQ4)
-    data = preprocessing.data_cleaning(combined_data)
-    preprocessing.data_check(data)
+    data = pd.read_csv("processed_data.csv")
+    # preprocessing.data_check(data)
+
+
+    # analysis.correlmat(data)
+    analysis.groupingby(data)
